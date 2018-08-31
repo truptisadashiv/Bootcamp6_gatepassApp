@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<br />
+<br />
+<br />
+@using (Html.BeginForm("RequestforMovement", "Home", FormMethod.Post))
+{
+    <input type="text" id="empid" name="empid" />
+    <input type="date" id="fromdate" name="fromdate" />
+    <input type="date" id="todate" name="todate" />
+    <input type="text" id="floca" name="floca" />
+    <input type="text" id="toloca" name="toloca" />
+    @*<a href="~\Home\SendEmail\" class="btn btn-primary btn-block">Submit</a>*@
+    <input type="submit" />
+}
