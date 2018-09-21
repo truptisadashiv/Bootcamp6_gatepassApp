@@ -1,0 +1,62 @@
+﻿@model IList<GatePass1.Models.Gate>
+@{
+    ViewData["Title"] = "Security";
+}
+<br/>
+<h2>Security</h2>
+
+
+@using (Html.BeginForm("FetchDetails", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true);
+
+<div class="jumbotron" style="background-color:white;">
+    <div class="form-group" style="width:300px">
+        <h4>Enter GatePass Id</h4>
+
+        <input type="text" class="form-control" id="gatePassId" name="gatePassId" onkeypress="return AvoidSpace(event)" />
+        <br/>
+        <button type="submit" id="inbtn" class="btn btn-success" onclick="validate()">submit</button>
+    </div>
+    </div>
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        @ViewBag.Message;
+    }
+ }
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#inbtn").click(function () {
+        if ($("#gatePassId").val() == "") {
+            alert("Please enter a gatapass Id");
+            return false;
+        }
+        else {
+            if (isNaN($("#gatePassId").val())) {
+                alert("GatePass Id is of Invalid Format");
+                return false;
+            }
+            else {
+                if (trim($("#gatePassId")) == "")
+                    alert("GatePass Id is of Invalid Format");
+                return false;
+            }
+        }
+
+
+    });
+          
+
+});
+
+function AvoidSpace(event) {
+        var k = event ? event.which : window.event.keyCode;
+        if (k == 32) return false;
+}
+
+</script>
+

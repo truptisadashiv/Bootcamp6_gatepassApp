@@ -1,0 +1,128 @@
+﻿
+@model GatePass1.Models.ViewModel
+<br />
+<h1 style="align-content:center">Gatepass Details</h1>
+<hr />
+@using (Html.BeginForm("", "Home", FormMethod.Post))
+{
+    @foreach (GatePass1.Models.Gate g in Model.Gates)
+    {
+        <h4>Employee Details</h4>
+        <div class="jumbotron" style="background-color:white;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="GatePassId" class="control-label">GatePass Id</label>
+                            <input type="text" class="form-control" id="GatePassId" placeholder="GatePass ID" value="@g.serialNo" autocomplete="off" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="EmployeeID" class="control-label">Employee ID</label>
+                            <input type="text" class="form-control" id="inputEmployeeID" placeholder="Employee ID" value="@g.employeeId" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="From Location" class="control-label">From Location</label>
+                            <input type="text" class="form-control" id="From Location" placeholder="From Location" value="@g.fromLocation" autocomplete="off" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="To Location" class="control-label">To Location</label>
+                            <input type="text" class="form-control" id="To Location" placeholder="To Location" value="@g.toLocation" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="From Date" class="control-label">From Date</label>
+                            <input type="text" class="form-control" id="From Date" placeholder="From Date" value="@g.fromDate" autocomplete="off" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="To Date" class="control-label">To Date</label>
+                            <input type="text" class="form-control" id="To Date" placeholder="To Date" value="@g.toDate" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                    @*<div class="col-sm">
+                            <div class="form-group">
+                                <label for="Status" class="control-label">Status</label>
+                                <input type="text" class="form-control" id="Status" placeholder="Status" value="@g.Status" autocomplete="off" readonly="readonly">
+                            </div>
+                            <div class="form-group">
+                                <label for="BusinessJustification" class="control-label">BusinessJustification</label>
+                                <input type="text" class="form-control" id="Status" placeholder="Status" value="@g.BusinessJustification" autocomplete="off" readonly="readonly">
+                            </div>
+                        </div>*@
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="IssuedTo" class="control-label">Issued To</label>
+                            <input type="text" class="form-control" id="Status" placeholder="Status" value="@g.issuedTo" autocomplete="off" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="Current Time" class="control-label">Current Time</label>
+                            <input type="text" class="form-control" id="Status" placeholder="Time" value="@DateTime.Now" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <h4>Asset Details</h4>
+    <div class="jumbotron" style="background-color:white;">
+        @foreach (GatePass1.Models.Asset l in Model.Assets)
+        {
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="Item ID" class="control-label">Item SerialNo</label>
+                            <input type="text" class="form-control" id="inputEmployeeID" placeholder="Employee ID" value="@l.itemSerialNo" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="Item Description" class="control-label">Item Description</label>
+                            <input type="text" class="form-control" id="From Location" placeholder="From Location" value="@l.itemDescription" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="Quantity" class="control-label">Quantity</label>
+                            <input type="text" class="form-control" id="To Location" placeholder="To Location" value="@l.quantity" autocomplete="off" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+        <script type="text/javascript"  language="javascript">
+    function DisableBackButton()
+    {
+        window.history.forward()
+
+
+}
+    DisableBackButton();
+    window.onload = DisableBackButton;
+    window.onpageshow = function(evt){ if (evt.persisted) DisableBackButton()}
+    window.onunload = function(){ void(0)}
+          
+            </script>
+    @if ((string)ViewData["Status"] == "loggedout")
+        {
+            <a href="~/Home/Entry" class="btn btn-primary">In</a>
+        }
+        else
+        {
+            <a href="~/Home/Entry" class="btn btn-primary">Out</a>
+        }
+}
+<br/>
+<br/>
+@Html.ActionLink("Back", "Security")
+@*<a href="~/Home/Back" class="btn btn-primary">Back</a>*@
+
+
+
+

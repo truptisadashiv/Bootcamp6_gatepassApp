@@ -1,0 +1,430 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+</head>
+<div class="jumbotron">
+    <fieldset>
+        <legend>Employee Details</legend>
+
+        <div class="form-group">
+            <label for="inputEmployeeID" class="control-label">Employee ID</label>
+            <input type="text" class="form-control" id="inputEmployeeID" placeholder="Employee ID" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="inputEmployeeName" class="control-label">Employee Name</label>
+            <input type="text" class="form-control" id="inputEmployeeName" placeholder="Employee Name" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="inputManagerName" class="control-label">Manager</label>
+            <input type="text" class="form-control" id="inputManagerName" placeholder="Manager" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="LaptopHostName" class="control-label">LaptopHostName</label>
+            <input type="text" class="form-control" id="LaptopHostName" placeholder="LaptopHostName" autocomplete="off">
+        </div>
+    </fieldset>
+</div>
+<div class="well">
+    <fieldset>
+        <legend>Travel Details</legend>
+
+        <div class="form-group">
+            <label for="select" class="control-label">From Location</label>
+            <select class="form-control" id="select1">
+                <option>Bengaluru</option>
+                <option>Baroda</option>
+                <option>Gandhinagar</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="select" class="control-label">To Location</label>
+            <select class="form-control" id="select2">
+                <option>Bengaluru</option>
+                <option>Baroda</option>
+                <option>Gandhinagar</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="From">From Date</label>
+            <input type="date" class="form-control" id="from" placeholder="Date" value="@DateTime.Now" onclick="date1()">
+        </div>
+        <div class="form-group">
+            <label for="To">To Date</label>
+            <input type="date" class="form-control" id="to" placeholder="Date" value="@DateTime.Now" onclick="validatedate(this)">
+        </div>
+        @*<select>
+            <option value="" selected="selected">Select</option>
+            <option value="1">Bangalore</option>
+            <option value="2">Vadodara</option>
+            <option value="3">Gandhinagar </option>
+        </select>
+        <select>
+            <option value="" selected="selected">Select</option>
+            <option value="1">Bangalore</option>
+            <option value="2">Vadodara</option>
+            <option value="3">Gandhinagar </option>
+        </select>*@
+        @*<div class="form-row format-date">
+            <span class="date-display"></span>
+
+            <input type="date" class="hide-replaced" />
+        </div>*@
+
+        @*<div class="input-group" id="divDOB">
+            <input type='date' class="form-control" data-date-format="YYYY/MM/DD" />
+            <span class="input-group-addon">
+                <span class="glyphicon-calendar glyphicon"></span>
+            </span>
+        </div>*@
+        @*<div class="form-group">
+            <label for="box1" class="control-label">From Date</label>
+            <input type="date" class="form-control" data-date-inline-picker="false" id="box1" placeholder="From-date" data-date-open-on-focus="true" onclick="date1()" />
+
+        </div>
+
+        <div class="form-group">
+            <label for="box2" class="control-label">To Date</label>
+            <input type="date" class="form-control" data-date-inline-picker="true" id="box2" placeholder="To-date" data-date-open-on-focus="true" />
+            <input type="datetime-local" class="form-control" id="box2" placeholder="ToDate" autocomplete="off">
+        </div>*@
+        @*<label for="from">From</label>
+        <input type="text" id="from" name="from" onkeypress="return false" />
+
+        <label for="to">to</label>
+        <input type="text" id="to" name="to" onkeypress="return false" />*@
+        <label for="box3" class="control-label">Business Justification</label>
+        <textarea class="form-control" rows="5" id="box3"></textarea>
+
+
+        <div class="form-group">
+
+            <label for="box3" class="control-label">Description</label>
+            <textarea class="form-control" rows="5" id="desc"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="serial Id" class="control-label">Serial ID</label>
+            <input type="text" class="form-control" id="serialID" placeholder="Serial ID" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="serial Id" class="control-label">Quantity</label>
+            <input type="text" class="form-control" id="quantity" placeholder="quantity" autocomplete="off">
+        </div>
+        <div class="form-group text-right">
+            <input type="button" value="Add" id="button_id" onclick="Add()" />
+        </div>
+
+        @*<div class="form-group">
+            <label for="box4" class="control-label">Travel Summary</label>
+            <textarea readonly class="form-control" rows="5" id="box4"></textarea>
+        </div>*@
+        <!-- Checkbox button -->
+        <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-info active">
+                <input type="checkbox" checked autocomplete="off"> Check Me Out
+            </label>
+        </div>
+        @*<label for="name3">
+            <input type="checkbox" id="name3activaitor" onclick="if(this.checked){ document.getElementById('name3').focus();}" />
+            Other...
+        </label>*@
+
+        <input type="checkbox" onclick="var input = document.getElementById('name2'); if(this.checked){ input.disabled = false; input.focus();}else{input.disabled=true;}" />Other...
+        <input id="name2" name="name2" disabled="disabled" />
+        <table id="results" width="360" border="1">
+            <thead>
+                <tr>
+                    <th scope="col" width="120">Description</th>
+                    <th scope="col" width="120">SerialId</th>
+                    <th scope="col" width="120">Quantity</th>
+                    <th width="360">Modify</th>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="form-group text-right">
+            <button class="btn btn-" onclick="Clear()">Clear</button>
+            <button class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary" onclick="SaveTable()">Submit My Details</button>
+        </div>
+
+    </fieldset>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+<script>
+    function date1() {
+        var dtToday = new Date();
+        // FromDate = document.getElementById("from").value;
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        maxDate = year + '-' + month + '-' + day;
+        //alert(maxDate);
+        $('#from').attr('min', maxDate);
+
+        $("#from").change(function () {
+
+            var minD = $(this).val();
+            //alert("hello");
+            //alert(minD);
+            $("#to").attr('min', minD);
+        });
+    }
+        //var dateToday = new Date();
+        //var dates = $("#from, #to").datepicker({
+        //    defaultDate: "+1w",
+        //    changeMonth: true,
+        //    numberOfMonths: 1,
+        //    minDate: dateToday,
+        //    onSelect: function (selectedDate) {
+        //        var option = this.id == "from" ? "minDate" : "maxDate",
+        //            instance = $(this).data("datepicker"),
+        //            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+        //        dates.not(this).datepicker("option", option, date);
+        //    }
+        //});
+    function SaveTable() {
+        
+        var FromDate = document.getElementById("from").value;
+        var ToDate = document.getElementById("to").value;
+        //var fromDate = $('#from').val();
+        
+
+
+        //var ToDate = $('#to').val();
+        var dateformat = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
+       // alert("hello");
+        // Match the date format through regular expression
+        if (FromDate.value.match(dateformat)) {
+            //document.form1.text1.focus();
+            //Test which seperator is used '/' or '-'
+            var opera1 = FromDate.value.split('/');
+            //alert("opera1");
+            var opera2 = fromDate.value.split('-');
+            //alert("opera2");
+            lopera1 = opera1.length;
+            lopera2 = opera2.length;
+            //Extract the string into month, date and year
+            if (lopera1 > 1) {
+                var pdate = FromDate.value.split('/');
+                alert("hello");
+            }
+            else if (lopera2 > 1) {
+                var pdate = FromDate.value.split('-');
+            }
+            var mm = parseInt(pdate[0]);
+            var dd = parseInt(pdate[1]);
+            var yy = parseInt(pdate[2]);
+            // Create list of days of a month [assume there is no leap year by default]
+            var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (mm == 1 || mm > 2) {
+                if (dd > ListofDays[mm - 1]) {
+                    alert('Invalid date format!');
+                    return false;
+                }
+            }
+            if (mm == 2) {
+                var lyear = false;
+                if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                    lyear = true;
+                }
+                if ((lyear == false) && (dd >= 29)) {
+                    alert('Invalid date format!');
+                    return false;
+                }
+                if ((lyear == true) && (dd > 29)) {
+                    alert('Invalid date format!');
+                    return false;
+                }
+            }
+        }
+        else {
+            alert("Invalid date format!");
+            //document.form1.text1.focus();
+            return false;
+        }
+        if (ToDate.value.match(dateformat)) {
+            //document.form1.text1.focus();
+            //Test which seperator is used '/' or '-'
+            var opera1 = ToDate.value.split('/');
+            var opera2 = ToDate.value.split('-');
+            lopera1 = opera1.length;
+            lopera2 = opera2.length;
+            //Extract the string into month, date and year
+            if (lopera1 > 1) {
+                var pdate = ToDate.value.split('/');
+            }
+            else if (lopera2 > 1) {
+                var pdate = ToDate.value.split('-');
+            }
+            var mm = parseInt(pdate[0]);
+            var dd = parseInt(pdate[1]);
+            var yy = parseInt(pdate[2]);
+            // Create list of days of a month [assume there is no leap year by default]
+            var ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (mm == 1 || mm > 2) {
+                if (dd > ListofDays[mm - 1]) {
+                    alert('Invalid date format!');
+                    return false;
+                }
+            }
+            if (mm == 2) {
+                var lyear = false;
+                if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                    lyear = true;
+                }
+                if ((lyear == false) && (dd >= 29)) {
+                    alert('Invalid date format!');
+                    return false;
+                }
+                if ((lyear == true) && (dd > 29)) {
+                    alert('Invalid date format!');
+                    return false;
+                }
+            }
+        }
+        else {
+            alert("Invalid date format!");
+            //document.form1.text1.focus();
+            return false;
+        }
+    }
+    
+
+    var FromLocation;
+    var ToLocation;
+    var FromDate;
+    var ToDate;
+    var businessjust;
+    var maxDate;
+    var row;
+
+    function Add() {
+        //FromLocation = document.getElementById("select1").value;
+
+        //ToLocation = document.getElementById("select2").value;
+
+        FromDate = document.getElementById("from").value;
+
+        ToDate = document.getElementById("to").value;
+
+        // businessjust = document.getElementById("box3").value;
+
+        desc = document.getElementById("desc").value;
+
+        serialID = document.getElementById("serialID").value;
+
+        quantity = document.getElementById("quantity").value;
+        // document.getElementById("box4").value = FromLocation + "\t" + ToLocation + "\t" + FromDate + "\t" + ToDate + "\t" + businessjust;
+
+        var table = document.getElementById("results");
+        row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = desc;
+        cell2.innerHTML = serialID;
+        cell3.innerHTML = quantity;
+        cell4.innerHTML = "<button type='button' class='btn btn-default' id='id1' onclick='Remove(this)'>Delete</button> <button value='disable editing' id='id2' class='btn btn-default' onclick='Edit1(this)'>Edit</button>"
+        // cell4.innerHTML = <button class="btn btn-default" onclick="Delete()"> Delete </button>
+        document.getElementById("desc").value = "";
+
+        document.getElementById("serialID").value = "";
+
+        document.getElementById("quantity").value = "";
+        if (FromDate > ToDate) {
+            alert("Fromdate is greater then todate");
+            return false;
+        }
+
+    }
+    function Remove(rowItem) {
+        //var table = document.getElementById("results");
+        ////var r = document.getElementById("id1");
+        //table.removeAttribute(row);
+
+        var row1 = rowItem.parentNode.parentNode;
+        row1.parentNode.removeChild(row1);
+
+
+    }
+
+    function Edit1(rowItem) {
+        var row1 = rowItem.parentNode.parentNode;
+        row1.contentEditable = "true";
+        row1.cells[3].contentEditable = "false";
+    }
+    //function Delete() {
+    //    //FromLocation = document.getElementById("select1").value;
+
+    //    //ToLocation = document.getElementById("select2").value;
+
+    //    //FromDate = document.getElementById("box1").value;
+
+    //    //ToDate = document.getElementById("box2").value;
+
+    //    // businessjust = document.getElementById("box3").value;
+
+    //    desc = document.getElementById("desc").value;
+
+    //    serialID = document.getElementById("serialID").value;
+
+    //    quantity = document.getElementById("quantity").value;
+    //    // document.getElementById("box4").value = FromLocation + "\t" + ToLocation + "\t" + FromDate + "\t" + ToDate + "\t" + businessjust;
+
+    //    var table = document.getElementById("results");
+    //    var row = table.insertRow(-1);
+    //    var cell1 = row.insertCell(0);
+    //    var cell2 = row.insertCell(1);
+    //    var cell3 = row.insertCell(2);
+    //    cell1.innerHTML = desc;
+    //    cell2.innerHTML = serialID;
+    //    cell3.innerHTML = quantity;
+
+    //    document.getElementById("desc").value = "";
+
+    //    document.getElementById("serialID").value = "";
+
+    //    document.getElementById("quantity").value = "";
+
+    //}
+    function Clear() {
+
+        document.getElementById("box4").value = "";
+    }
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
